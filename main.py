@@ -1,5 +1,6 @@
 import turtle
 from game import Game
+from puzzle import Puzzle
 
 def set_background_image(image):
     screen.bgpic(image)
@@ -17,10 +18,18 @@ def point_in_rect(x, y, x1, x2, y1, y2):
 def select_click_event(x, y):
     if point_in_rect(x, y, -400, -147, -253, 253):
         city = "Medvegja"
+        
         clear()
+    
         game = Game(city, 10)
         game.play()
         
+        clear()
+        
+        puzzle = Puzzle("assets/guri_i_bolles")
+        puzzle.start()
+    
+        #print("HELLO")
         #print("The selected zone is Medvegja")
     elif point_in_rect(x, y, -132, 132, -253, 253):
         city = "Bujanovac"
