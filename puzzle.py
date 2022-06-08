@@ -24,18 +24,20 @@ class Puzzle():
         
         self.images = []
         for i in range(Puzzle.NUM_ROWS * Puzzle.NUM_COLS):
+            #print("ADDING " + str(i))
             file = f"{self.images_path}/{i}.gif"
             self.images.append(file)
         
         self.excluded_n = random.randint(0, len(self.images)-1)
         self.excluded_img = self.images[self.excluded_n]
         self.images.remove(self.excluded_img)
-        self.images.append(f"{self.images_path}/empty.gif")
+        self.images.insert(self.excluded_n, f"{self.images_path}/empty.gif")
        # images.append(f"{self.images_path}/scramble.gif")
 
 
     def register_images(self):
         for i in range(len(self.images)):
+            #print("SHAPING " + self.images[i])
             self.screen.addshape(self.images[i])
 
 

@@ -15,47 +15,87 @@ def point_in_rect(x, y, x1, x2, y1, y2):
         return True
     return False
 
-def select_click_event(x, y):
+city = ""
+chosen = ""
+t = ""
+
+def city_click_event(x, y):
+    global city
+    
     if point_in_rect(x, y, -400, -147, -253, 253):
         city = "Medvegja"
-        
-        clear()
-    
-        game = Game(city, 10)
-        game.play()
-        
-        clear()
-        
-        puzzle = Puzzle("assets/guri_i_bolles")
-        puzzle.start()
-    
-        #print("HELLO")
-        #print("The selected zone is Medvegja")
     elif point_in_rect(x, y, -132, 132, -253, 253):
         city = "Bujanovac"
-        clear()
-        game = Game(city, 10)
-        #print("The selected zone is Bujanovac")
     elif point_in_rect(x, y, 147, 400, -253, 253):
         city = "Presheva"
-        clear()
-        game = Game(city, 10)
-        #print("The selected zone is Presheva")
      
+def start_click_event(x, y):
+    global chosen
+    
+    if point_in_rect(x, y, -200, 200, 79, 202):
+        chosen = "start"
+    elif point_in_rect(x, y, -200, 200, -62, 61):
+        chosen = "help"
+    elif point_in_rect(x, y, -200, 200, -202, -79):
+        chosen = "exit"
+    
 def clear():
     turtle.clearscreen()
     
-def launchScreen():
+def startScreen():
+    set_background_image("assets/background.gif")
+    set_image(t, "assets/start.gif")
+    turtle.onscreenclick(start_click_event)
+    
+def chooseScreen():
     set_background_image("assets/destination.gif")
-    t = turtle.Turtle()
     set_image(t, "assets/cities.gif")
-    turtle.onscreenclick(select_click_event)
+    turtle.onscreenclick(city_click_event)
 
+def helpScreen():
+    t.reset()
+    # TODO
+    
 def main():
     turtle.setup(800, 800)
+    
     global screen
     screen = turtle.Screen()
-    launchScreen()
+   
+    global t
+    t = turtle.Turtle()
+    #t.ht()
+    
+    startScreen()
+    while chosen == "":
+        turtle.update()
+    
+    if chosen == "start":
+        chooseScreen()
+    elif chosen == "help":
+        helpScreen()
+    elif chosen == "exit":
+        exit(0)
+        
+    while city == "":
+        turtle.update()
+    
+    clear()
+    set_background_image("assets/background.gif")
+        
+    game = Game(city, 10)
+    game.play()
+    
+    clear()
+    set_background_image("assets/background.gif")
+        
+    puzzle = Puzzle("assets/guri_i_bolles")
+    puzzle.start()
+    
+    while not puzzle.solved:
+        turtle.update()
+    print("PUZZLE SOLVED")
+    
     turtle.mainloop()
     
 if __name__ == "__main__":
