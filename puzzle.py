@@ -9,7 +9,7 @@ class Puzzle():
     TILE_HEIGHT = 188  # Actual image size
     FONT_SIZE = 24
     FONT = ('Helvetica', FONT_SIZE, 'normal')
-    SCRAMBLE_DEPTH = 1
+    SCRAMBLE_DEPTH = 10
 
     def __init__(self, images_path):
         self.images_path = images_path
@@ -21,6 +21,7 @@ class Puzzle():
         
         self.board = []
         self.solved = False
+        self.allow_solve = False
         
         self.images = []
         for i in range(Puzzle.NUM_ROWS * Puzzle.NUM_COLS):
@@ -68,7 +69,7 @@ class Puzzle():
         for row in self.board:
             for candidate in row:
                 if candidate.shape() == f"{self.images_path}/empty.gif":
-                        empty_square = candidate
+                    empty_square = candidate
         
     def swap_tile(self, tile):
         """Swaps the position of the clicked tile with the empty tile."""
@@ -87,12 +88,10 @@ class Puzzle():
 
             self.draw_board()
         
-        if self.is_solved():
-            #print("SOLVED")
+        if self.is_solved() and self.allow_solve:
             self.solved = True
             empty_i, empty_j = self.find_empty_square_pos()
             empty_t = self.board[empty_i][empty_j]
-            #print(self.excluded_img)
             self.screen.addshape(self.excluded_img)
             empty_t.shape(self.excluded_img)
             
@@ -203,5 +202,6 @@ class Puzzle():
         # self.create_scramble_button_tkinter()
         # self.create_scramble_button()
         self.scramble_board()
+        self.allow_solve = True
         self.draw_board()
         self.screen.tracer(1)  # Restore animation
