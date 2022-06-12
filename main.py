@@ -126,6 +126,13 @@ def transition_text(text, size, sleep):
     
     turtle.clear()
     
+def transition_background(image, sleep):
+    set_background_image(image)
+
+    do_sleep(sleep)
+
+    turtle.clear()
+    
 def main():
     turtle.setup(800, 800)
     turtle.listen()
@@ -133,7 +140,7 @@ def main():
     turtle.hideturtle()
     turtle.color("blue4")
     
-    transition_text("Welcome!", size=100, sleep=1)
+    transition_background("assets/welcome.gif", sleep=2)
     
     global chosen
     global city
