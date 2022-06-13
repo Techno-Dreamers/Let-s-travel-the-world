@@ -84,8 +84,7 @@ information = {
         ("This is INFO 2", 1)
     ],
     "Presheva": [
-        ("This is INFO 1", 0),
-        ("This is INFO 2", 1)
+        ("Preševo is the cultural center of\nAlbanians in Serbia. The town has\na population of 13,426 people,\nwhile the municipality had 34,904\ninhabitants. Albanians form the\nethnic majority of the municipality,\nfollowed by Serbs, Roma\nand other ethnic groups.", 0),
     ]
 }
 
@@ -120,6 +119,10 @@ def do_sleep(sleep):
     
 def transition_text(text, size, sleep):
     set_background_image("assets/background.gif")
+    
+    n = text.count('\n') + 1
+    turtle.penup()
+    turtle.goto(0, -n*size/2)
     turtle.write(text, align="center", font=("Arial", size, "normal"))
     
     do_sleep(sleep)
