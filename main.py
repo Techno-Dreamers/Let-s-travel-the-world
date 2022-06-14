@@ -76,15 +76,17 @@ levels = [
 
 information = {
     "Medvegja": [
-        ("This is INFO 1", 0),
-        ("This is INFO 2", 1)
+        ("This is INFO 1", 0, 50),
+        ("This is INFO 2", 1, 50)
     ],
     "Bujanovac": [
-        ("This is INFO 1", 0),
-        ("This is INFO 2", 1)
+        ("This is INFO 1", 0, 50),
+        ("This is INFO 2", 1, 50)
     ],
     "Presheva": [
-        ("Preševo is the cultural center of\nAlbanians in Serbia. The town has\na population of 13,426 people,\nwhile the municipality had 34,904\ninhabitants. Albanians form the\nethnic majority of the municipality,\nfollowed by Serbs, Roma\nand other ethnic groups.", 0),
+        ("Preševo is the cultural center of\nAlbanians in Serbia. The town has\na population of 13,426 people,\nwhile the municipality had 34,904\ninhabitants. Albanians form the\nethnic majority of the municipality,\nfollowed by Serbs, Roma\nand other ethnic groups.", 0, 50),
+        
+        ("The Abdulla Krashnica Culture\nCenter (Shtëpia e Kulturës \"Abdulla\n Krashnica\") is the home to various culture\nevents in Preševo. Its complex includes\nthe town library, music hall and theater.\nPreševo organizes the annual \"Netët e\nkomedisë\" (The nights of comedy), a\none–week festival with comedy shows\nfrom all the Albanian-speaking territories.\nThe festival was first organized in 1994.", 1, 40)
     ]
 }
 
@@ -98,8 +100,8 @@ questions = {
         ("This is question 2, test 123456", ["answer A", "answer B", "answer C", "answer D"], "A")
     ],
     "Presheva": [
-        ("This is question 1, test 123456", ["answer A", "answer B", "answer C", "answer D"], "B"),
-        ("This is question 2, test 123456", ["answer A", "answer B", "answer C", "answer D"], "A")
+        ("Most inhabitants of Preševo are:", ["Serbs", "Albanians", "Roma", "Macedonians"], "B"),
+        ("How long does the\n\"Netët e komedisë\" festival last?", ["1 day", "3 days", "5 days", "7 days"], "D")
     ]
 }
 
@@ -142,7 +144,7 @@ def main():
     turtle.penup()
     turtle.hideturtle()
     turtle.color("blue4")
-    
+    turtle.title("Let's travel the world")
     transition_background("assets/welcome.gif", sleep=2)
     
     global chosen
@@ -173,7 +175,7 @@ def main():
                     
                     random.shuffle(infos)
                     idx = infos[0][1]
-                    transition_text(infos[0][0], size=50, sleep=10)
+                    transition_text(infos[0][0], size=infos[0][2], sleep=10)
                     
                     game = Game(level["speed"], level["ospeed"], level["time"], level["goal"])
                     game.play()
@@ -201,7 +203,7 @@ def main():
             
             transition_text("     Congratulations!\nYou finished all 3 levels", size=40, sleep=3)
             transition_text("             As a last challenge\n          try to solve this puzzle\nof an attraction in your chosen city", size=40, sleep=5)
-            puzzle = Puzzle("assets/guri_i_bolles")
+            puzzle = Puzzle("assets/presevo_valley")
             puzzle.start()
                 
             while not puzzle.solved:
