@@ -26,20 +26,25 @@ class Quiz:
         
         self.t.color("crimson")
        
-        self.t.goto(0, 194-45//2)
-        self.t.write(question, align="center", font=("Arial", 45, "normal"))
+        n = question.count('\n') + 1
+        self.t.goto(0, 194-n*38//2)
+        self.t.write(question, align="center", font=("Arial", 38, "normal"))
        
-        self.t.goto(-191, -127-45//2)
-        self.t.write(answers[0], align="center", font=("Arial", 45, "normal"))
+        n = answers[0].count('\n') + 1
+        self.t.goto(-191, -127-n*38//2)
+        self.t.write(answers[0], align="center", font=("Arial", 38, "normal"))
         
-        self.t.goto(188, -127-45//2)
-        self.t.write(answers[1], align="center", font=("Arial", 45, "normal"))
+        n = answers[1].count('\n') + 1
+        self.t.goto(188, -127-n*38//2)
+        self.t.write(answers[1], align="center", font=("Arial", 38, "normal"))
         
-        self.t.goto(-191, -270-45//2)
-        self.t.write(answers[2], align="center", font=("Arial", 45, "normal"))
+        n = answers[2].count('\n') + 1
+        self.t.goto(-191, -270-n*38//2)
+        self.t.write(answers[2], align="center", font=("Arial", 38, "normal"))
         
-        self.t.goto(188, -270-45//2)
-        self.t.write(answers[3], align="center", font=("Arial", 45, "normal"))
+        n = answers[3].count('\n') + 1
+        self.t.goto(188, -270-n*38//2)
+        self.t.write(answers[3], align="center", font=("Arial", 38, "normal"))
         
         screen.tracer(1)
         
