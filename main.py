@@ -183,7 +183,7 @@ def main():
                     while not game.over:
                         turtle.update()
                     
-                    if game.score < game.goal:
+                    if game.score < game.goal and not game.clickedstop:
                         if game.willdoquiz:
                             clear()
                             
@@ -200,19 +200,23 @@ def main():
                         break
                         
                     clear()
-            
-            transition_text("     Congratulations!\nYou finished all 3 levels", size=40, sleep=3)
-            transition_text("             As a last challenge\n          try to solve this puzzle\nof an attraction in your chosen city", size=40, sleep=5)
-            puzzle = Puzzle("assets/presevo_valley")
-            puzzle.start()
                 
-            while not puzzle.solved:
-                turtle.update()
-            
-            do_sleep(5)
-            clear()
-            transition_text("     Congratulations!\nYou solved the puzzle", size=40, sleep=3)
-            
+                if game.clickedstop:
+                    break
+                
+            if not game.clickedstop:
+                transition_text("     Congratulations!\nYou finished all 3 levels", size=40, sleep=3)
+                transition_text("             As a last challenge\n          try to solve this puzzle\nof an attraction in your chosen city", size=40, sleep=5)
+                puzzle = Puzzle("assets/presevo_valley")
+                puzzle.start()
+                    
+                while not puzzle.solved:
+                    turtle.update()
+                
+                do_sleep(5)
+                clear()
+                transition_text("     Congratulations!\nYou solved the puzzle", size=40, sleep=3)
+                
         elif chosen == "help":
             helpScreen()
             
