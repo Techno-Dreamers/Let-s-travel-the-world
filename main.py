@@ -57,19 +57,19 @@ levels = [
     {
         "speed": 10,
         "ospeed": 1,
-        "time": 1,
+        "time": 30,
         "goal": 5
     },
     {
         "speed": 15,
         "ospeed": 5,
-        "time": 1,
+        "time": 30,
         "goal": 5
     },
     {
         "speed": 20,
         "ospeed": 10,
-        "time": 1,
+        "time": 30,
         "goal": 5
     }
 ]
