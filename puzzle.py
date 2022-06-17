@@ -1,5 +1,4 @@
 import turtle
-import tkinter as tk
 import random
 
 class Puzzle():
@@ -176,31 +175,11 @@ class Puzzle():
         return self.board
 
 
-    def create_scramble_button(self):
-        """Uses a turtle with an image as a button."""
-        
-        #print(self.images)
-        button = turtle.Turtle(self.images[Puzzle.NUM_ROWS * Puzzle.NUM_COLS])
-        button.penup()
-        button.goto(0, -240)
-        button.onclick(lambda x, y: self.scramble_board())
-
-
-    def create_scramble_button_tkinter(self):
-        """An alternative approach to creating a button using Tkinter."""
-        canvas = self.screen.getcanvas()
-        button = tk.Button(canvas.master, text="Scramble", background="cadetblue", foreground="white", bd=0,
-                           command=self.scramble_board)
-        canvas.create_window(0, -240, window=button)
-
-
     def start(self):
         self.register_images()
 
         # Initialise game and display
         self.board = self.create_tiles()
-        # self.create_scramble_button_tkinter()
-        # self.create_scramble_button()
         self.scramble_board()
         self.allow_solve = True
         self.draw_board()

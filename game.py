@@ -41,6 +41,12 @@ class Game:
         self.stop = False
         self.play()
         
+    def overandend(self):
+        self.stop = True
+        self.over = True
+        self.clickedstop = True
+        self.end = True
+        
     def __init__(self, speed, ospeed, time, goal):
         self.speed = speed
         self.ospeed = ospeed
@@ -50,6 +56,7 @@ class Game:
         self.stop = False
         self.over = False
         self.end = False
+        self.clickedstop = False
         self.willdoquiz = False
         
         self.screen = turtle.Screen()
@@ -123,11 +130,8 @@ class Game:
             self.player.remove_event_listeners()
             self.stop = True
             self.over = True
-    
-    def overandend(self):
-        print("eta son")
         
-    def endgame(self):
+    def endlevel(self):
         turtle.onscreenclick(None)
         self.end = True
     
@@ -156,7 +160,7 @@ class Game:
                     self.highscore = score
                 self.score = score
                 
-        if self.over:
+        if self.over and not self.clickedstop:
             t = turtle.Turtle()
             t.hideturtle()
             t.penup()
@@ -169,7 +173,7 @@ class Game:
                 
                 t.write("Click anywhere to continue", align="center", font=("Arial", 18, "normal"))
                 
-                turtle.onscreenclick(lambda x, y: self.endgame())
+                turtle.onscreenclick(lambda x, y: self.endlevel())
             else:
                 t.write("Level failed!", align="center", font=("Arial", 25, "normal"))
                
